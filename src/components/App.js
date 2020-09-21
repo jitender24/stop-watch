@@ -6,18 +6,6 @@ import Footer from "./Footer";
 import ButtonComponent from "./ButtonComponent";
 import TimerIcon from "@material-ui/icons/Timer";
 
-// const items = [
-//   { title: "What is react ?", content: "React is JS library." },
-//   {
-//     title: "how are you?",
-//     content: "I'm fine what about you."
-//   },
-//   {
-//     title: "What's your name ?",
-//     content: "My name is Jitender."
-//   }
-// ];
-
 function App() {
   const [time, setTime] = useState({
     hours: 0,
@@ -38,11 +26,11 @@ function App() {
   function handleStart() {
     run();
     setStatus(1);
-    setInterv(setInterval(run, 1));
+    setInterv(setInterval(run, 10));
   }
 
   function run() {
-    if (time.minutes === 2) {
+    if (time.minutes === 60) {
       time.hours += 1;
       time.minutes = 0;
     }
@@ -55,7 +43,12 @@ function App() {
       time.milliSec = 0;
     }
     time.milliSec += 1;
-
+    setLapTime({
+      hr: time.hours,
+      mn: time.minutes,
+      sec: time.seconds,
+      ms: time.milliSec
+    });
     return setTime({
       hours: time.hours,
       minutes: time.minutes,
@@ -65,7 +58,7 @@ function App() {
   }
   function handlePause() {
     clearInterval(interval);
-    setStatus(0);
+    setStatus(2);
   }
 
   function handleReset() {
@@ -81,12 +74,6 @@ function App() {
   }
 
   function handleLaps() {
-    setLapTime({
-      hr: time.hours,
-      mn: time.minutes,
-      sec: time.seconds,
-      ms: time.milliSec
-    });
     setLaps((prevLaps) => {
       return [...prevLaps, lapTime];
     });

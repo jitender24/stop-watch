@@ -20,6 +20,14 @@ function ButtonComponent(props) {
       ) : (
         ""
       )}
+      {props.status === 2 ? (
+        <button className="stopwatch-btn resume-btn" onClick={props.start}>
+          Resume
+        </button>
+      ) : (
+        ""
+      )}
+
       <button className="stopwatch-btn reset-btn" onClick={props.reset}>
         Reset
       </button>
